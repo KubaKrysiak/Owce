@@ -12,13 +12,22 @@ function toHTML(owca) {
  	`;
 }
 
+
+
 const tabela = document.querySelector("#owce");
 const imię = document.querySelector("#sheep-name");
+const szczescie = document.querySelector("#sheep-happy");
+const plywalnosc = document.querySelector("#sheep-canswim");
 
 function check( owca ){
-	const wpisaneImię = imię.value.trim()
-	if(wpisaneImię == "") return true;
-	return owca.name.startsWith( wpisaneImię );
+	const wpisaneImię = imię.value.trim();
+	const wpisaneSzczescie = szczescie.checked;
+	const wpisanaPlywalnosc = plywalnosc.checked;
+	if(wpisaneImię !== "" && !(owca.name.startsWith( wpisaneImię ))) return false;
+	if(wpisanaPlywalnosc && (!owca.canSweam)) return false;
+	if(wpisaneSzczescie && (!owca.isHappy)) return false;
+	return true;
+	
 }
 
 function refresh(){
